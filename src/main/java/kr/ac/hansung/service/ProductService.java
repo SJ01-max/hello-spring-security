@@ -48,6 +48,16 @@ public class ProductService {
     }
 
     @Transactional
+    public void updateProduct(Long id, ProductDto dto) {
+        Product product = productRepository.findById(id)
+            .orElseThrow(() -> new NoSuchElementException("상품을 찾을 수 없습니다: " + id));
+        product.setName(dto.getName());
+        product.setPrice(dto.getPrice());
+        product.setStock(dto.getStock());
+        product.setDescription(dto.getDescription());
+    }
+
+    @Transactional
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }

@@ -72,7 +72,9 @@
     <div class="card border-0 shadow-sm">
         <div class="card-body p-0">
             <div th:if="${productPage.empty}" class="text-center py-5 text-muted">
-                <p class="mb-0">등록된 상품이 없습니다.</p>
+                <p class="mb-0" th:if="${keyword != null and !#strings.isEmpty(keyword)}"
+                   th:text="|'${keyword}' 검색 결과가 없습니다.|"></p>
+                <p class="mb-0" th:unless="${keyword != null and !#strings.isEmpty(keyword)}">등록된 상품이 없습니다.</p>
             </div>
             <div th:unless="${productPage.empty}" class="table-responsive">
                 <table class="table table-hover mb-0 align-middle">
